@@ -1,95 +1,91 @@
-Week 3 – Flask App Deployment with ALB + ASG
-What I Built
+🚀 Week 3 – Production-Style Flask Deployment on AWS
+📌 Project Overview
 
-In this project, I deployed a Flask application in a production-style setup using:
+In this project, I deployed a Flask application in a production-style AWS architecture instead of running a single EC2 instance manually.
 
-Application Load Balancer
+The setup includes:
 
-Auto Scaling Group
+Application Load Balancer (ALB)
+
+Auto Scaling Group (ASG)
 
 Target Group
 
-Route 53 (custom domain)
+Route 53 custom domain
 
-ACM SSL certificate
+ACM SSL/TLS certificate
 
-Multi-AZ architecture
+Multi-AZ high availability
 
-The goal was to understand how real-world applications are deployed in AWS instead of just running EC2 manually.
+The goal was to simulate a real-world cloud deployment with scalability, availability, and HTTPS security.
 
-Architecture Overview
+🏗 Architecture Flow
+User
+   ↓
+komal.world (Route 53 DNS)
+   ↓
+Application Load Balancer (HTTP → HTTPS)
+   ↓
+Target Group (Port 8000)
+   ↓
+Auto Scaling Group (Min 2, Max 3)
+   ↓
+EC2 Instances (t2.micro, Multi-AZ)
+   ↓
+Flask Application
+🌍 Infrastructure Details
+Component	Configuration
+Region	us-east-1
+Instance Type	t2.micro
+OS	Amazon Linux 2023
+Application Port	8000
+Availability	Multi-AZ
+⚖️ Load Balancer Configuration
 
-User → Domain (komal.world) → Route 53 → ALB → Target Group → Auto Scaling Group → EC2 → Flask App
-
-Infrastructure Details
-
-Region: us-east-1
-Instance Type: t2.micro
-OS: Amazon Linux 2023
-App Port: 8000
-
-Load Balancer
-
-Internet-facing ALB
+Internet-facing Application Load Balancer
 
 Listener 80 (HTTP)
 
 Listener 443 (HTTPS with ACM certificate)
 
-Forwarding to Target Group on port 8000
+HTTPS forwards traffic to Target Group on port 8000
 
-Target Group
+Health checks enabled on /
+
+🎯 Target Group
 
 Protocol: HTTP
 
 Port: 8000
 
-Health check path: /
+Health Check Path: /
 
-Auto Scaling Group
+Integrated with Auto Scaling Group
 
-Min: 2
+📈 Auto Scaling Configuration
 
-Desired: 2
+Minimum capacity: 2
 
-Max: 3
+Desired capacity: 2
 
-Multi-AZ enabled
+Maximum capacity: 3
+
+Multi-AZ distribution enabled
 
 ELB health checks enabled
 
-SSL Setup
+Automatic instance replacement on failure
 
-Requested certificate using AWS ACM
+🔐 SSL/TLS Setup
 
-Used DNS validation
+Certificate requested using AWS Certificate Manager (ACM)
 
-Added CNAME records automatically in Route 53
+DNS validation method used
 
-Attached certificate to ALB HTTPS listener
+CNAME validation records created in Route 53
 
-What I Learned
+Certificate attached to ALB HTTPS listener
 
-Why ALB should listen on 80/443 instead of 8000
+Application accessible via:
 
-How health checks work
-
-How ASG replaces unhealthy instances
-
-How DNS propagation works
-
-Difference between public and private subnets
-
-How to reduce cost by setting ASG desired to 0
-
-Cost Optimization
-
-When not testing:
-
-Set ASG desired capacity to 0
-
-Delete ALB if not needed
-
-ACM certificate is free
-
-Route 53 hosted zone has small monthly cost
+https://komal.world
