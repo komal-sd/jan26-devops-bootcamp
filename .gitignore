@@ -1,0 +1,18 @@
+# AWS CLI installation files
+week5/student-app/aws/
+week5/student-app/awscliv2.zip
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+venv/
+
+# Local files
+*.log
+reports/
+local.db
+
+# OS files
+.DS_Store
