@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Portal</title>
+</head>
+
+<body>
+
+<h2>Add Student</h2>
+
+<form method="POST">
+<input name="name" placeholder="Enter student name">
+<button type="submit">Add</button>
+</form>
+
+<h2>Student List</h2>
+
+<ul>
+{% for student in students %}
+<li>{{ student[1] }}</li>
+{% endfor %}
+</ul>
+
+</body>
+</html>
