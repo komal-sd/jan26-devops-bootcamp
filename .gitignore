@@ -23,3 +23,4 @@ local.db
 *.tfstate.backup
 *.tfvars
 .terraform.lock.hcl
+*.zip
