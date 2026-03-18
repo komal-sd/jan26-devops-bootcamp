@@ -1,4 +1,4 @@
-# ─────────────────────────────────────────
+
 # provider.tf
 # Terraform version + AWS provider +
 # Remote backend configuration
@@ -15,11 +15,11 @@ terraform {
   }
 
   # Remote backend — uncomment after creating S3 bucket
-  # backend "s3" {
-  #   bucket = "your-bucket-name"
-  #   key    = "week6/ecs/terraform.tfstate"
-  #   region = "ap-south-1"
-  # }
+   backend "s3" {
+     bucket = "devops-bootcamp-tfstate-1773832286"
+     key    = "week6/ecs/terraform.tfstate"
+     region = "us-east-1"
+   }
 }
 
 provider "aws" {
