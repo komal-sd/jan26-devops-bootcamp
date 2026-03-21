@@ -26,3 +26,38 @@ variable "environment" {
   type        = string
   default     = "dev"
 }
+
+variable "prefix" {
+  description = "prefix for all resources"
+  type        = string
+  default     = "jan26-bootcamp"
+}
+
+variable "app_name" {
+  description = "Application name"
+  type        = string
+  default     = "student-portal"
+}
+variable "container_port" {
+  description = "Port number the container listens on"
+  type        = number
+  default     = 8000
+}
+
+variable "db_name" {
+  description = "Database name"
+  type        = string
+  default     = "studentportal"
+}
+
+variable "db_username" {
+  description = "Database master username"
+  type        = string
+  default     = "postgres"
+}
+
+variable "image" {
+  description = "Docker image URI for the application"
+  type        = string
+  default     = "nginx:latest"
+}

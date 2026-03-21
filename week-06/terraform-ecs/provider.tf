@@ -12,14 +12,20 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.0"
+    }
   }
 
-  # Remote backend — uncomment after creating S3 bucket
-   backend "s3" {
-     bucket = "devops-bootcamp-tfstate-1773832286"
-     key    = "week6/ecs/terraform.tfstate"
-     region = "us-east-1"
-   }
+
+  # Remote backend — 
+  backend "s3" {
+    bucket = "devops-bootcamp-tfstate-1773832286"
+    key    = "week6/ecs/terraform.tfstate"
+    region = "us-east-1"
+  }
 }
 
 provider "aws" {
