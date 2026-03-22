@@ -61,3 +61,9 @@ variable "image" {
   type        = string
   default     = "nginx:latest"
 }
+
+variable "domain_name" {
+  description = "Domain name for the application"
+  type        = string
+  default     = "komal.world"
+}

@@ -71,8 +71,21 @@ resource "aws_ecs_service" "app" {
     assign_public_ip = false
   }
 
-
-
-
+  load_balancer {
+    target_group_arn = aws_alb_target_group.app.arn
+    container_name   = var.app_name
+    container_port   = var.container_port
+  }
 
 }
+
+# ── CloudWatch Log Group ──────────────────
+resource "aws_cloudwatch_log_group" "app" {
+  name              = "/ecs/${var.app_name}"
+  retention_in_days = 7
+
+  tags = {
+    Name = "/ecs/${var.app_name}"
+  }
+}
+
