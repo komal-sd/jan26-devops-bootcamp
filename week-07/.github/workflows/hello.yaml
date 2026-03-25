@@ -1,0 +1,12 @@
+name: Hello Komal
+on: push
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    env:
+      MY_VAR: "Hello"
+
+    steps:
+      - run: echo "Hello Komal"
+      - run: echo $MY_VAR
+      - run: echo "Goodbye Komal"
